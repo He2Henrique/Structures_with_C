@@ -35,6 +35,7 @@ void insert(struct Node** head, int value) {
 
     struct Node* newNo = crtNo(value);//after putting the value in the allocated memory space the fuction will return the address
 
+    
     newNo->next = *head;//lets supose the address is #1
     // now newNo will acess this #1 part of memory and in partition to pointer(next) will take the pointer stores in head which is null in the first case
     *head = newNo;// after that in address of head, will storege the address #1;
@@ -47,6 +48,29 @@ void insert(struct Node** head, int value) {
     //so we can see is the pointer always point to start and the next nodes points to the previous 
 
 }
+
+// find a element in linkedlist
+struct Node* find_node(int position, struct Node* Head)
+{
+    struct Node* pointer = Head;
+    int cont=0;
+    
+    while(cont < position ){
+        if(pointer->next == NULL){
+            break;
+        }
+        pointer = pointer -> next;
+        cont ++;
+    }
+    if(cont != position){
+        printf("element wont be found\n");
+        printf("the last element was %i\n", cont);
+    }
+    return pointer;
+    
+    
+}
+
 
 
 // Funtion to print the list
@@ -72,12 +96,16 @@ void FreeList(struct Node* head) {
 
 int main() {
     struct Node* head = NULL;
+    struct Node* snode;
     insert(&head, 13);
     insert(&head, 40);
     insert(&head, 90);
+    
+    snode = find_node( 2 ,head);
+    printf("%i\n", snode->data);
     printf("Linkedlist: ");
     printList(head);
-    freeList(head);
+    FreeList(head);
 
     return 0;
 }
