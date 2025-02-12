@@ -50,28 +50,49 @@ void insert(struct Node** head, int value) {
 }
 
 // find a element in linkedlist
-struct Node* find_node(int position, struct Node* Head)
+struct Node* find_node(int position, struct Node** Head)
 {
-    struct Node* pointer = Head;
+    //prepair the things..
+    struct Node* pointer = *Head;// the process here is similar of the function printlist you can go there before to understande this one 
     int cont=0;
+    if(position < 0){
+        printf("you cant pass negative numbers in this function, we will start by 0...");
+        position = 0;
+    }
     
+
+    // a loop to reach at the position.
     while(cont < position ){
         if(pointer->next == NULL){
-            break;
+            break;//that part avoid the programing return null as address
         }
-        pointer = pointer -> next;
+        pointer = pointer -> next;//because point always take the next address but if the next address dont exist we can break.
         cont ++;
     }
-    if(cont != position){
+    if(cont != position){// if the funtion dont reach the position that you want will return the last one.
         printf("element wont be found\n");
         printf("the last element was %i\n", cont);
     }
     return pointer;
     
-    
 }
 
 
+void insert_in_middle(struct Node** head, int positon, int value){
+    //fist we need find a position
+    struct Node* address;
+    struct Node* newno = crtNo(value);
+    
+    address = find_node(positon, head);
+    // we have two addres one that points to void
+    // and other that points to to other node (corrent node in list) 
+    // the work that we gonna do is...
+    // change the pointer of corrent node after we change the new node.
+    newno->next = address->next;
+    address->next = newno;
+
+
+}
 
 // Funtion to print the list
 void printList(struct Node* head) {
@@ -100,8 +121,9 @@ int main() {
     insert(&head, 13);
     insert(&head, 40);
     insert(&head, 90);
+    insert_in_middle(&head, 2, 23);
     
-    snode = find_node( 2 ,head);
+    snode = find_node( 2 ,&head);
     printf("%i\n", snode->data);
     printf("Linkedlist: ");
     printList(head);
