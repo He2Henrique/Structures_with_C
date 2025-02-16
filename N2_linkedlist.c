@@ -18,7 +18,7 @@ struct Node* crtNo(int value) {
     //sometimes malloc can return to us null beacause dont find a free block in the memory to be allocated
     //so we need to varificate this 
     if (newNo == NULL) {
-        printf("Erro ao alocar memória!\n");
+        printf("Error in allocating memory\n");
         exit(1);// ends the programing
     }
 
