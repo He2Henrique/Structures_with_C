@@ -21,7 +21,9 @@ int main(){
 
     //another case is a literal string
     char *str4 = "what is";//in this case the string will be register in read-only memory
+    //u can't change the value of this string if u do that can have problems
     
+    //strings is like vectors in memorie str4 is a pointer to the first element in the string
 
 
     return 0;

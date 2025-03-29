@@ -13,7 +13,6 @@ int main(){
     //  value: 5
     //}
 
-
     //when u declare this...
     int *pt = &num;//addres to num
     //data{
@@ -26,6 +25,6 @@ int main(){
     printf("%p  ", &pt);// print the address of data like this pt.address ex: #9876
     printf("%i", *pt);// print the value of value pt.value -> pt.value.value : 5
 
-
+    //generic pointers how it works.
     return 0;
 }
